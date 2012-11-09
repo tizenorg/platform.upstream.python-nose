@@ -36,11 +36,12 @@ sed -i 's,man/man1,share/man/man1,' setup.py
 %build
 python setup.py build
 
+%check
+python setup.py test
+
 %install
 python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 
-%check
-python setup.py test
 
 %files
 %defattr(-,root,root,-)
