@@ -6,6 +6,7 @@ Summary:        Nose extends unittest to make testing easier
 License:        LGPL-2.0+
 Group:          Development/Languages/Python
 Source:         http://pypi.python.org/packages/source/n/nose/nose-%{version}.tar.gz
+Source1001: 	python-nose.manifest
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  python-devel
 BuildRequires:  python-distribute
@@ -31,6 +32,7 @@ output capture and more.
 
 %prep
 %setup -q -n nose-%{version}
+cp %{SOURCE1001} .
 sed -i 's,man/man1,share/man/man1,' setup.py
 
 %build
@@ -44,6 +46,7 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %doc NEWS README.txt lgpl.txt
 %{_bindir}/nosetests*
