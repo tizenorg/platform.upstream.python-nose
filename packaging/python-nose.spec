@@ -1,12 +1,12 @@
 Name:           python-nose
-Version:        1.1.2
+Version:        1.2.1
 Release:        0
 Url:            http://readthedocs.org/docs/nose/
 Summary:        Nose extends unittest to make testing easier
 License:        LGPL-2.0+
-Group:          Development/Languages/Python
+Group:          Platform Development/Python
 Source:         http://pypi.python.org/packages/source/n/nose/nose-%{version}.tar.gz
-Source1001: 	python-nose.manifest
+Source1001:     python-nose.manifest
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  python-devel
 BuildRequires:  python-distribute
@@ -52,5 +52,3 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{_bindir}/nosetests*
 %{_mandir}/man*/nosetests*
 %{python_sitelib}/*
-
-%changelog
