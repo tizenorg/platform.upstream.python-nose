@@ -1,7 +1,7 @@
 import sys
 import os
 
-VERSION = '1.1.2'
+VERSION = '1.2.1'
 py_vers_tag = '-%s.%s' % sys.version_info[:2]
 
 test_dirs = ['functional_tests', 'unit_tests', os.path.join('doc','doc_tests'), 'nose']
@@ -93,11 +93,11 @@ setup(
     coverage and profiling, flexible attribute-based test selection,
     output capture and more. More information about writing plugins may be
     found on in the nose API documentation, here:
-    http://somethingaboutorange.com/mrl/projects/nose/
+    http://readthedocs.org/docs/nose/
 
     If you have recently reported a bug marked as fixed, or have a craving for
-    the very latest, you may want the unstable development version instead:
-    http://bitbucket.org/jpellerin/nose/get/tip.gz#egg=nose-dev
+    the very latest, you may want the development version instead:
+    https://github.com/nose-devs/nose/tarball/master#egg=nose-dev
     """,
     license = 'GNU LGPL',
     keywords = 'test unittest doctest automatic discovery',
@@ -107,7 +107,7 @@ setup(
                          'examples/*.py',
                          'examples/*/*.py']},
     classifiers = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
         'Natural Language :: English',

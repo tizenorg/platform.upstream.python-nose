@@ -13,6 +13,7 @@ if sys.version_info < (3,):
                 del kwargs[a]
         return _setup(*args, **kwargs)
 else:
+    import glob
     import os
     import re
     import logging
@@ -21,7 +22,7 @@ else:
     from setuptools.command.build_py import Mixin2to3
     from distutils import dir_util, file_util, log
     import setuptools.command.test
-    from pkg_resources import normalize_path
+    from pkg_resources import normalize_path, Environment
     try:
         import patch
         patch.logger.setLevel(logging.WARN)
@@ -130,6 +131,16 @@ else:
         # Override 'test' command to make sure 'build_tests' gets run first.
         def run(self):
             self.run_command('build_tests')
+            this_dir = os.path.normpath(os.path.abspath(os.path.dirname(__file__)))
+            lib_dirs = glob.glob(os.path.join(this_dir, 'build', 'lib*'))
+            test_dir = os.path.join(this_dir, 'build', 'tests')
+            env = Environment(search_path=lib_dirs)
+            distributions = env["nose"]
+            assert len(distributions) == 1, (
+                "Incorrect number of distributions found")
+            dist = distributions[0]
+            dist.activate()
+            sys.path.insert(0, test_dir)
             setuptools.command.test.test.run(self)
 
     def setup(*args, **kwargs):
